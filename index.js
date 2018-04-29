@@ -41,12 +41,41 @@ var params = {
 
 const currentTime = new Date()
 
-let response = {
-  lat: 1.288332,
-  lng: 103.783088,
-  count: 0,
-  timestamp: currentTime
-}
+let response = [
+  {
+    lat: 1.288332,
+    lng: 103.783088,
+    count: 0,
+    timestamp: currentTime
+  }
+]
+
+let responseDemo = [
+  {
+    lat: 1.288332,
+    lng: 103.783088,
+    count: Math.floor(Math.random() * Math.floor(10)),
+    timestamp: currentTime
+  },
+  {
+    lat: 1.287942,
+    lng: 103.781501,
+    count: Math.floor(Math.random() * Math.floor(10)),
+    timestamp: currentTime
+  },
+  {
+    lat: 1.289347,
+    lng: 103.78404,
+    count: Math.floor(Math.random() * Math.floor(10)),
+    timestamp: currentTime
+  },
+  {
+    lat: 1.289307,
+    lng: 103.779512,
+    count: Math.floor(Math.random() * Math.floor(10)),
+    timestamp: currentTime
+  }
+]
 
 const getNumberOfPeople = data => {
   let largest = -1
@@ -74,6 +103,7 @@ const getResponse = jobId => {
           getResponse(jobId)
         } else if (data.JobStatus === "SUCCEEDED") {
           const numberOfPeople = getNumberOfPeople(data.Persons)
+          console.log(data.Persons[1])
           console.log(numberOfPeople)
           response.count = numberOfPeople
           startTracking()
@@ -101,8 +131,12 @@ const startTracking = () => {
 
 startTracking()
 
-app.get("/", (req, res) => {
+app.get("/live", (req, res) => {
   res.send(JSON.stringify(response))
+})
+
+app.get("/demo", (req, res) => {
+  res.send(JSON.stringify(responseDemo))
 })
 
 http.listen(port, () => {
