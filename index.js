@@ -50,32 +50,34 @@ let response = [
   }
 ]
 
-let responseDemo = [
-  {
-    lat: 1.288332,
-    lng: 103.783088,
-    count: Math.floor(Math.random() * Math.floor(10)),
-    timestamp: currentTime
-  },
-  {
-    lat: 1.287942,
-    lng: 103.781501,
-    count: Math.floor(Math.random() * Math.floor(10)),
-    timestamp: currentTime
-  },
-  {
-    lat: 1.289347,
-    lng: 103.78404,
-    count: Math.floor(Math.random() * Math.floor(10)),
-    timestamp: currentTime
-  },
-  {
-    lat: 1.289307,
-    lng: 103.779512,
-    count: Math.floor(Math.random() * Math.floor(10)),
-    timestamp: currentTime
-  }
-]
+const getResponseDemo = () => {
+  return [
+    {
+      lat: 1.288332,
+      lng: 103.783088,
+      count: Math.floor(Math.random() * Math.floor(10)),
+      timestamp: currentTime
+    },
+    {
+      lat: 1.287942,
+      lng: 103.781501,
+      count: Math.floor(Math.random() * Math.floor(10)),
+      timestamp: currentTime
+    },
+    {
+      lat: 1.289347,
+      lng: 103.78404,
+      count: Math.floor(Math.random() * Math.floor(10)),
+      timestamp: currentTime
+    },
+    {
+      lat: 1.289307,
+      lng: 103.779512,
+      count: Math.floor(Math.random() * Math.floor(10)),
+      timestamp: currentTime
+    }
+  ]
+}
 
 const getNumberOfPeople = data => {
   let largest = -1
@@ -136,7 +138,7 @@ app.get("/live", (req, res) => {
 })
 
 app.get("/demo", (req, res) => {
-  res.send(JSON.stringify(responseDemo))
+  res.send(JSON.stringify(getResponseDemo()))
 })
 
 http.listen(port, () => {
