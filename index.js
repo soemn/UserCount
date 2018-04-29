@@ -103,9 +103,9 @@ const getResponse = jobId => {
           getResponse(jobId)
         } else if (data.JobStatus === "SUCCEEDED") {
           const numberOfPeople = getNumberOfPeople(data.Persons)
-          console.log(data.Persons[1])
+          // console.log(data.Persons[1])
           console.log(numberOfPeople)
-          response.count = numberOfPeople
+          response.count[0] = numberOfPeople
           startTracking()
           return numberOfPeople
         } else {
